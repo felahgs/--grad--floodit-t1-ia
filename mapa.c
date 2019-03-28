@@ -54,6 +54,19 @@ void gera_mapa(tmapa *m, int semente) {
   }
 }
 
+void copia_mapa(tmapa *m, tmapa *n) {
+  int i, j;
+  n->nlinhas = m->nlinhas;
+  n->ncolunas = m->ncolunas;
+  n->ncores = m->ncores;
+  
+  n->mapa = aloca_matriz_int(n->nlinhas, n->ncolunas);
+  for(i = 0; i < m->nlinhas; i++) {
+    for(j = 0; j < m->ncolunas; j++)
+        n->mapa[i][j] = m->mapa[i][j];
+  }
+}
+
 void carrega_mapa(tmapa *m) {
   int i, j;
 

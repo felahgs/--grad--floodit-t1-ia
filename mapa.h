@@ -19,6 +19,8 @@ void copia_mapa(tmapa *m, tmapa *n);
 void carrega_mapa(tmapa*);
 void mostra_mapa(tmapa*);
 void mostra_mapa_cor(tmapa*);
+int conta_flood(tmapa *m, int i, int j, int cor, int dir);
+void pinta(tmapa *m, int l, int c, int fundo, int cor);
 void pinta_mapa(tmapa*, int);
 
 #endif

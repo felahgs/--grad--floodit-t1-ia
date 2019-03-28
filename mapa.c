@@ -32,7 +32,28 @@ tmapa * aloca_mapa(tmapa *mo) {
   md->lref = mo->lref;
   md->cref = mo->cref;
   md->mapa = aloca_matriz_int(md->nlinhas, md->ncolunas);
+  
+  for(int i = 0; i < mo->nlinhas; i++) {
+    for(int j = 0; j < mo->ncolunas; j++)
+        md->mapa[i][j] = mo->mapa[i][j];
+  }
+  
   return md;
+}
+
+void copia_mapa(tmapa *m, tmapa *n) {
+  int i, j;
+  n->nlinhas = m->nlinhas;
+  n->ncolunas = m->ncolunas;
+  n->ncores = m->ncores;
+  n->cmax = m->cmax;
+  n->lmax = m->lmax;
+  
+  n->mapa = aloca_matriz_int(n->nlinhas, n->ncolunas);
+  for(i = 0; i < m->nlinhas; i++) {
+    for(j = 0; j < m->ncolunas; j++)
+        n->mapa[i][j] = m->mapa[i][j];
+  }
 }
 
 void libera_mapa(tmapa *m)  {
@@ -42,6 +63,8 @@ void libera_mapa(tmapa *m)  {
 
 void gera_mapa(tmapa *m, int semente) {
   int i, j;
+  m->cmax = m->ncolunas - 1;
+  m->lmax = m->nlinhas -1;
 
   if(semente)
     srand(semente);  
@@ -51,19 +74,6 @@ void gera_mapa(tmapa *m, int semente) {
   for(i = 0; i < m->nlinhas; i++) {
     for(j = 0; j < m->ncolunas; j++)
       m->mapa[i][j] = 1 + rand() % m->ncores;
-  }
-}
-
-void copia_mapa(tmapa *m, tmapa *n) {
-  int i, j;
-  n->nlinhas = m->nlinhas;
-  n->ncolunas = m->ncolunas;
-  n->ncores = m->ncores;
-  
-  n->mapa = aloca_matriz_int(n->nlinhas, n->ncolunas);
-  for(i = 0; i < m->nlinhas; i++) {
-    for(j = 0; j < m->ncolunas; j++)
-        n->mapa[i][j] = m->mapa[i][j];
   }
 }
 
@@ -116,6 +126,30 @@ void mostra_mapa_cor(tmapa *m) {
         printf("%s%d%s ", cor_ansi[m->mapa[i][j]], m->mapa[i][j], cor_ansi[0]);
     printf("\n");
   }
+}
+
+int conta_flood(tmapa *m, int i, int j, int cor, int dir) {
+  int **mat = m->mapa;
+  int count = 0;
+  
+  if (i > m->lmax) i = 0;
+  else if (i < 0) i = m->lmax;
+  
+  if (j > m->cmax) j = 0;
+  else if (j < 0 ) j = m->cmax;
+  
+  if(mat[i][j] != cor) return count;
+  count++;
+  // mat[i][j] = mat[i][j] * -1;
+  mat[i][j] = 0;
+  
+  dir == 1 ? (count += 0) : (count += conta_flood(m, i-1, j, cor, 3));
+  dir == 2 ? (count += 0) : (count += conta_flood(m, i, j+1, cor, 4));
+  dir == 3 ? (count += 0) : (count += conta_flood(m, i+1, j, cor, 1));
+  dir == 4 ? (count += 0) : (count += conta_flood(m, i, j-1, cor, 2));
+  // printf("i: %d j: %d\n", i, j);
+
+  return count;
 }
 
 void pinta(tmapa *m, int l, int c, int fundo, int cor) {

@@ -2,6 +2,7 @@
 #define GRAPH_H_INCLUDED
 
 #include "lista.h"
+#include "mapa.h"
 
 typedef struct grafo *grafo; 
 typedef struct vertice *vertice;
@@ -10,7 +11,8 @@ typedef struct vertice *vertice;
 struct vertice {
   char* nome;
  
-  int valor;
+  tmapa m;
+  int cor;
   vertice pai;
   lista filhos; // lista de vizinhos de saida 
 };

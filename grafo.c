@@ -5,7 +5,7 @@
 #include "lista.h"
 #include "grafo.h"
 
-grafo constroi_grafo(char* g_name, int g_age) {
+grafo constroi_grafo() {
 
   grafo g = malloc(sizeof(struct grafo));
 
@@ -13,9 +13,6 @@ grafo constroi_grafo(char* g_name, int g_age) {
     return NULL;
     
   g->raiz = novo_vertice("first V", NULL);
-
-  g->nome = g_name;
-  g->age = g_age;
 
   return g;
 }

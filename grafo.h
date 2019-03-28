@@ -18,19 +18,15 @@ struct vertice {
 };
 
 struct grafo {
-    char* nome;
-    int age;
     unsigned int numVertice;
-
     vertice raiz;
-
     lista vertices;
 };
 
 //------------------------------------------------------------------------------
 
 
-grafo constroi_grafo(char* g_name, int g_age);
+grafo constroi_grafo();
 
 vertice novo_vertice (char *nome_v, vertice pai);
 

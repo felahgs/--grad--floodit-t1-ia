@@ -140,8 +140,8 @@ int conta_flood(tmapa *m, int i, int j, int cor, int dir) {
   
   if(mat[i][j] != cor) return count;
   count++;
-  // mat[i][j] = mat[i][j] * -1;
-  mat[i][j] = 0;
+  mat[i][j] = mat[i][j] * -1;
+  // mat[i][j] = 0;
   
   dir == 1 ? (count += 0) : (count += conta_flood(m, i-1, j, cor, 3));
   dir == 2 ? (count += 0) : (count += conta_flood(m, i, j+1, cor, 4));

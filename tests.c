@@ -7,10 +7,10 @@
 
 int main(int argc, char **argv) {
   printf("To be implemented\n\n");
-  grafo g = constroi_grafo("nom careae", 23);
+  grafo g = constroi_grafo();
   
-  printf("Grafo: %s \n", g->nome);
-  printf("Age: %d \n", g->age);
+  // printf("Grafo: %s \n", g->nome);
+  // printf("Age: %d \n", g->age);
   
   printf("\n");
   

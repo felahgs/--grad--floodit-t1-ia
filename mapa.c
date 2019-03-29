@@ -31,6 +31,8 @@ tmapa * aloca_mapa(tmapa *mo) {
   md->ncores = mo->ncores;
   md->lref = mo->lref;
   md->cref = mo->cref;
+  md->cmax = mo->cmax;
+  md->lmax = mo->lmax;
   md->mapa = aloca_matriz_int(md->nlinhas, md->ncolunas);
   
   for(int i = 0; i < mo->nlinhas; i++) {
@@ -129,8 +131,16 @@ void mostra_mapa_cor(tmapa *m) {
 }
 
 int conta_flood(tmapa *m, int i, int j, int cor, int dir) {
+  int res = conta(m, i, j, cor, dir);
+  // pinta_mapa(m, cor);
+  return res;
+}
+
+int conta(tmapa *m, int i, int j, int cor, int dir) {
   int **mat = m->mapa;
   int count = 0;
+  
+  // mostra_mapa_cor(m);
   
   if (i > m->lmax) i = 0;
   else if (i < 0) i = m->lmax;
@@ -138,10 +148,15 @@ int conta_flood(tmapa *m, int i, int j, int cor, int dir) {
   if (j > m->cmax) j = 0;
   else if (j < 0 ) j = m->cmax;
   
+  // printf("Flood cor: %d\n", cor);
+  // printf("cordinates:%d %d\n", i, j);
+  // printf("node cor: %d\n", mat[i][j]);
+  // printf("lmax: %d cmax: %d\n", m->lmax, m->cmax );
+  
   if(mat[i][j] != cor) return count;
   count++;
-  mat[i][j] = mat[i][j] * -1;
-  // mat[i][j] = 0;
+  // mat[i][j] = mat[i][j] * -1;
+  mat[i][j] = 0;
   
   dir == 1 ? (count += 0) : (count += conta_flood(m, i-1, j, cor, 3));
   dir == 2 ? (count += 0) : (count += conta_flood(m, i, j+1, cor, 4));
@@ -183,3 +198,11 @@ void pinta_mapa(tmapa *m, int cor) {
   pinta(m, m->lref, m->cref, fundo, cor);
 }
 
+void printint (char* s, int i) {
+  printf("%s: %d\n",s, i);
+}
+
+int checa_escore(int a, int b) {
+  if (a >= b) return 1;
+  else return 0;
+}

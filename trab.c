@@ -8,11 +8,13 @@
 
 int main(int argc, char **argv) {
 
-  int cor;
-  int semente;
-  int tmp;
+  int cor, semente, tmp;
   tmapa m;
-  
+  lista fronteira = constroi_lista();
+  grafo g = constroi_grafo();
+  vertice v, vf;
+
+
   // if(argc < 4 || argc > 5) {
   //   printf("uso: %s <numero_de_linhas> <numero_de_colunas> <numero_de_cores> [<semente_aleatoria>]\n", argv[0]);
   //   exit(1);
@@ -25,6 +27,9 @@ int main(int argc, char **argv) {
   m.nlinhas = 5;
   m.ncolunas = 5;
   m.ncores = 3;
+  
+  // final = m.nlinhas * m.ncolunas;
+  // cores = m.cores;
 
   if(argc == 5)
     semente = atoi(argv[4]);
@@ -35,27 +40,20 @@ int main(int argc, char **argv) {
   m.lref = 0;
   m.cref = 0;
   
-  tmapa s2 = *aloca_mapa(&m),
-        s3 = *aloca_mapa(&m),
-        s4 = *aloca_mapa(&m);
+  //Inicia Estado Inicial (Vertice 0)
+  v = novo_vertice(g, NULL, &m, fronteira);
   
-  pinta_mapa(&s2, 1);
-  pinta_mapa(&s3, 2);
-  pinta_mapa(&s4, 3);
+  m = *aloca_mapa(&v->estado);
+  pinta_mapa(&m, 4);
+  vf = novo_vertice(g, v, &m, fronteira);
   
-  mostra_mapa_cor(&m);
-  mostra_mapa_cor(&s2);
-  mostra_mapa_cor(&s3);
-  mostra_mapa_cor(&s4);
   
-  // printf("m: %d %d %d\n", m.nlinhas, m.ncolunas, m.ncores);
-  // printf("\n");
-  // printf("n: %d %d %d\n", n.nlinhas, n.ncolunas, n.ncores);
-  exit(0);
-  // mostra_mapa_cor(&m);
-  mostra_mapa_cor(&m);
-  // int f = conta_flood(&m, 0, 2, m.mapa[0][2], 0);
+  printint("Vertice", v->id);
+  mostra_mapa_cor(&v->estado);
+  printint("Flood: ", v->escore); printf("\n");
 
+  exit(0);
+  
   printf("escolha a posição de referência\n");
   printf("linha: ");
   scanf("%d", &tmp);
@@ -77,3 +75,11 @@ int main(int argc, char **argv) {
   }
   return 0;
 }
+// vertice novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira ) {
+//     vertice v = constroi_vertice(tamanho_lista(g->vertices), pai, m);
+//     insere_lista(v, g->vertices);
+//     insere_lista(v, fronteira);
+//     if( pai != NULL) {
+//       insere_lista(pai->filhos);
+//     }
+// }

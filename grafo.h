@@ -9,10 +9,11 @@ typedef struct vertice *vertice;
 
 
 struct vertice {
-  char* nome;
+  int id;
  
-  tmapa m;
+  tmapa estado;
   int cor;
+  int escore;
   vertice pai;
   lista filhos; // lista de vizinhos de saida 
 };
@@ -23,13 +24,11 @@ struct grafo {
     lista vertices;
 };
 
-//------------------------------------------------------------------------------
-
-
 grafo constroi_grafo();
-
-vertice novo_vertice (char *nome_v, vertice pai);
-
+vertice constroi_vertice (int id, vertice pai, tmapa m);
+vertice novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira );
+lista vertices(grafo g);
 void imprime_filhos(vertice ver);
+void imprime_lista(lista l);
 
 #endif

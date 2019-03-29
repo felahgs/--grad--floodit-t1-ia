@@ -6,48 +6,48 @@
 // #include "mapa.h"
 
 int main(int argc, char **argv) {
-  printf("To be implemented\n\n");
-  grafo g = constroi_grafo();
+  // printf("To be implemented\n\n");
+  // grafo g = constroi_grafo();
   
-  // printf("Grafo: %s \n", g->nome);
+  // printf("Grafo: %d \n", g->id);
   // printf("Age: %d \n", g->age);
   
-  printf("\n");
+  // printf("\n");
   
-  vertice root = g->raiz, f1, f2, f3, n1;
-  f1 = novo_vertice("filho 1", root);
-  f2 = novo_vertice("filho 2", root);
-  f3 = novo_vertice("filho 3", root);
-  n1 = novo_vertice("neto 1", f1);
+  // vertice root = g->raiz, f1, f2, f3, n1;
+  // f1 = constroi_vertice(0, root);
+  // f2 = constroi_vertice(1, root);
+  // f3 = constroi_vertice(2, root);
+  // n1 = constroi_vertice(3, f1);
   
-  printf("\n");
+  // printf("\n");
   
-  printf("Graph Root: %s \n", root->nome);
-  printf("Edge 1: %s \n", f1->nome);
-  printf("Edge 2: %s \n", f2->nome);
-  printf("Edge 3: %s \n", f3->nome);
-  printf("Edge 4: %s \n", n1->nome);
+  // printf("Graph Root: %d \n", root->id);
+  // printf("Edge %d \n", f1->id);
+  // printf("Edge %d \n", f2->id);
+  // printf("Edge %d \n", f3->id);
+  // printf("Edge %d \n", n1->id);
   
-  insere_lista(f1, root->filhos);
-  insere_lista(f2, root->filhos);
-  insere_lista(f3, root->filhos);
-  insere_lista(n1, f1->filhos);
+  // insere_lista(f1, root->filhos);
+  // insere_lista(f2, root->filhos);
+  // insere_lista(f3, root->filhos);
+  // insere_lista(n1, f1->filhos);
   
-  printf("\n");
+  // printf("\n");
   
-  printf("Raiz:\n"); printf("\t\"%s\"\n", g->raiz->nome);
-  printf("\nFilhos de %s:\n", root->nome); imprime_filhos(root);
-  printf("\nFilhos de %s:\n", f1->nome);imprime_filhos(f1);
-  printf("\nFilhos de %s:\n", f2->nome);imprime_filhos(f2);
-  printf("\nFilhos de %s:\n", f3->nome);imprime_filhos(f3);
+  // printf("Raiz:\n"); printf("\t\"%d\"\n", g->raiz->id);
+  // printf("\nFilhos de %d:\n", root->id); imprime_filhos(root);
+  // printf("\nFilhos de %d:\n", f1->id);imprime_filhos(f1);
+  // printf("\nFilhos de %d:\n", f2->id);imprime_filhos(f2);
+  // printf("\nFilhos de %d:\n", f3->id);imprime_filhos(f3);
   
-  printf("\n");
+  // printf("\n");
   
-  // printf("Pai de %s: %s\n", root->nome, root->pai->nome);
-  printf("Pai de %s: %s\n", f1->nome, f1->pai->nome);
-  printf("Pai de %s: %s\n", f2->nome, f2->pai->nome);
-  printf("Pai de %s: %s\n", f3->nome, f3->pai->nome);
-  printf("Pai de %s: %s\n", n1->nome, n1->pai->nome);
+  // // printf("Pai de %d: %d\n", root->id, root->pai->id);
+  // printf("Pai de %d: %d\n", f1->id, f1->pai->id);
+  // printf("Pai de %d: %d\n", f2->id, f2->pai->id);
+  // printf("Pai de %d: %d\n", f3->id, f3->pai->id);
+  // printf("Pai de %d: %d\n", n1->id, n1->pai->id);
   
   return 0;
   // int cor;
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
   // tmapa m;
 
   // if(argc < 4 || argc > 5) {
-  //   printf("uso: %s <numero_de_linhas> <numero_de_colunas> <numero_de_cores> [<semente_aleatoria>]\n", argv[0]);
+  //   printf("uso: %d <numero_de_linhas> <numero_de_colunas> <numero_de_cores> [<semente_aleatoria>]\n", argv[0]);
   //   exit(1);
   // }
 

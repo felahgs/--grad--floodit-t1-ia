@@ -31,7 +31,7 @@ vertice constroi_vertice (int id, vertice pai, tmapa m) {
 // 	v->nome = malloc(sizeof(char)*(strlen(nome_v)+1));
 // 	strcpy(v->nome,nome_v);
 
-    v->id = id;
+  v->id = id;
 	v->pai = pai;
 	v->filhos  = constroi_lista();
 	v->estado = m;
@@ -48,14 +48,28 @@ vertice constroi_vertice (int id, vertice pai, tmapa m) {
 	return v;
 }
 
-vertice novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira ) {
+no novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira ) {
     vertice v = constroi_vertice(tamanho_lista(g->vertices), pai, *m);
     insere_lista(v, g->vertices);
     insere_lista(v, fronteira);
     if( pai != NULL) {
       insere_lista(v, pai->filhos);
     }
-    return v;
+    no n = primeiro_no(fronteira);
+    return n;
+}
+
+void expande_vertices(grafo g, no pai, int cores, lista fronteira) {
+  vertice v = conteudo(pai);
+  for(int i = 1; i <= cores; i++) {
+    if (i == v->cor) continue;
+    tmapa m = *aloca_mapa(&v->estado);
+    pinta_mapa(&m, i);
+    novo_vertice(g, v, &m, fronteira);
+    
+  }
+  remove_no(fronteira, pai, NULL);
+  imprime_lista(fronteira);
 }
 
 lista vertices(grafo g) { return g->vertices; }

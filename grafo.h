@@ -26,7 +26,8 @@ struct grafo {
 
 grafo constroi_grafo();
 vertice constroi_vertice (int id, vertice pai, tmapa m);
-vertice novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira );
+no novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira );
+void expande_vertices(grafo g, no pai, int cores, lista fronteira);
 lista vertices(grafo g);
 void imprime_filhos(vertice ver);
 void imprime_lista(lista l);

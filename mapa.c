@@ -198,9 +198,6 @@ void pinta_mapa(tmapa *m, int cor) {
   pinta(m, m->lref, m->cref, fundo, cor);
 }
 
-void printint (char* s, int i) {
-  printf("%s: %d\n",s, i);
-}
 
 int checa_escore(int a, int b) {
   if (a >= b) return 1;

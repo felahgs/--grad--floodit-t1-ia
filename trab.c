@@ -5,14 +5,16 @@
 #include "lista.h"
 #include "grafo.h"
 #include "mapa.h"
+#include "aux.h"
 
 int main(int argc, char **argv) {
 
-  int cor, semente, tmp;
+  int cor, semente, tmp, cores, final;
   tmapa m;
   lista fronteira = constroi_lista();
   grafo g = constroi_grafo();
-  vertice v, vf;
+  vertice v;
+  no no;
 
 
   // if(argc < 4 || argc > 5) {
@@ -28,8 +30,11 @@ int main(int argc, char **argv) {
   m.ncolunas = 5;
   m.ncores = 3;
   
-  // final = m.nlinhas * m.ncolunas;
-  // cores = m.cores;
+  final = m.nlinhas * m.ncolunas;
+  cores = m.ncores;
+  
+  printint("Cores", cores);
+  printint("Estado final", final);
 
   if(argc == 5)
     semente = atoi(argv[4]);
@@ -41,16 +46,16 @@ int main(int argc, char **argv) {
   m.cref = 0;
   
   //Inicia Estado Inicial (Vertice 0)
-  v = novo_vertice(g, NULL, &m, fronteira);
+  no = novo_vertice(g, NULL, &m, fronteira);
+  v = conteudo(no);
+  imprime_vertice(v);
   
-  m = *aloca_mapa(&v->estado);
-  pinta_mapa(&m, 4);
-  vf = novo_vertice(g, v, &m, fronteira);
+  expande_vertices(g, no, cores, fronteira);
   
-  
-  printint("Vertice", v->id);
-  mostra_mapa_cor(&v->estado);
-  printint("Flood: ", v->escore); printf("\n");
+  // m = *aloca_mapa(&v->estado);
+  // pinta_mapa(&m, 4);
+  // no = novo_vertice(g, v, &m, fronteira);
+
 
   exit(0);
   

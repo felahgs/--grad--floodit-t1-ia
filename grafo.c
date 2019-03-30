@@ -53,13 +53,15 @@ no novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira ) {
     insere_lista(v, g->vertices);
     insere_lista(v, fronteira);
     if( pai != NULL) {
+      v->profundidade = pai->profundidade + 1;
       insere_lista(v, pai->filhos);
     }
+    else v->profundidade = 0;
     no n = primeiro_no(fronteira);
     return n;
 }
 
-void expande_vertices(grafo g, no pai, int cores, lista fronteira) {
+no expande_vertices(grafo g, no pai, int cores, lista fronteira) {
   vertice v = conteudo(pai);
   for(int i = 1; i <= cores; i++) {
     if (i == v->cor) continue;
@@ -67,9 +69,13 @@ void expande_vertices(grafo g, no pai, int cores, lista fronteira) {
     pinta_mapa(&m, i);
     novo_vertice(g, v, &m, fronteira);
     
+    // vertice vf = conteudo(n);
+    // mostra_mapa_cor(&vf->estado);
+    // printf("Flood: %d\n\n", vf->escore);
   }
   remove_no(fronteira, pai, NULL);
-  imprime_lista(fronteira);
+  // imprime_lista(fronteira);
+  return primeiro_no(fronteira);
 }
 
 lista vertices(grafo g) { return g->vertices; }

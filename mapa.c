@@ -197,9 +197,3 @@ void pinta_mapa(tmapa *m, int cor) {
     return;
   pinta(m, m->lref, m->cref, fundo, cor);
 }
-
-
-int checa_escore(int a, int b) {
-  if (a >= b) return 1;
-  else return 0;
-}

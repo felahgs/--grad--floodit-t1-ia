@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #include "lista.h"
 #include "grafo.h"
@@ -14,7 +15,7 @@ int main(int argc, char **argv) {
   lista fronteira = constroi_lista();
   grafo g = constroi_grafo();
   vertice v;
-  no no;
+  no no, n;
 
 
   // if(argc < 4 || argc > 5) {
@@ -33,8 +34,11 @@ int main(int argc, char **argv) {
   final = m.nlinhas * m.ncolunas;
   cores = m.ncores;
   
-  printint("Cores", cores);
-  printint("Estado final", final);
+  int* arr = malloc((final/4) * sizeof(int));
+  arr[0] = 0;
+  
+  // printint("Cores", cores);
+  // printint("Estado final", final);
 
   if(argc == 5)
     semente = atoi(argv[4]);
@@ -50,11 +54,21 @@ int main(int argc, char **argv) {
   v = conteudo(no);
   imprime_vertice(v);
   
-  expande_vertices(g, no, cores, fronteira);
-  
-  // m = *aloca_mapa(&v->estado);
-  // pinta_mapa(&m, 4);
-  // no = novo_vertice(g, v, &m, fronteira);
+  // printf("\n\n");
+  while (!vazia(fronteira)) {
+    no = expande_vertices(g, no, cores, fronteira);
+    for(n = primeiro_no(fronteira); n; n = proximo_no(n)) {
+      no = checa_escore(no, n);
+      // imprime_vertice(conteudo(no));
+    }
+    v = conteudo(no);
+    imprime_vertice(v);
+    arr[0]++;
+    arr[arr[0]] = v->cor;
+    if(v->escore == final) break;
+  }
+  printint("Score", v->escore);
+  imprime_array(arr);
 
 
   exit(0);

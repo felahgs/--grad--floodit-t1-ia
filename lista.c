@@ -24,6 +24,16 @@ struct lista {
 unsigned int tamanho_lista(lista l) { return l->tamanho; }
 
 //---------------------------------------------------------------------------
+// devolve 1 se a lista não estiver vazia
+
+unsigned int vazia(lista l) { 
+    if ( l->tamanho == 0) 
+      return 1;
+    else 
+      return 0;
+  }
+
+//---------------------------------------------------------------------------
 // devolve o primeiro nó da lista l,
 //      ou NULL, se l é vazia
 

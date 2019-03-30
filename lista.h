@@ -15,6 +15,10 @@ typedef struct no *no;
 // devolve o número de nós da lista l
 
 unsigned int tamanho_lista(lista l);
+//------------------------------------------------------------------------------
+// devolve 1 se a lista não estiver vazia
+
+unsigned int vazia(lista l);
 
 //------------------------------------------------------------------------------
 // devolve o primeiro nó da lista l,

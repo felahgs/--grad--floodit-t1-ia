@@ -27,6 +27,7 @@ no checa_escore(no na, no nb) {
 }
 
 void imprime_array(int *arr) {
+  printf("n m %d\n", arr[0]);
   for (int i = 1; i <= arr[0]; i++) {
     printf("%d ", arr[i]);
   }

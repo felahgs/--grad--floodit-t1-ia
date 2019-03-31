@@ -64,7 +64,7 @@ no novo_vertice(grafo g, vertice pai, tmapa *m, lista fronteira ) {
 no expande_vertices(grafo g, no pai, int cores, lista fronteira) {
   vertice v = conteudo(pai);
   for(int i = 1; i <= cores; i++) {
-    if (i == v->cor) continue;
+    // if (i == v->cor) continue;
     tmapa m = *aloca_mapa(&v->estado);
     pinta_mapa(&m, i);
     novo_vertice(g, v, &m, fronteira);

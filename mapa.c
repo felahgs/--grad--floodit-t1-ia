@@ -85,6 +85,8 @@ void carrega_mapa(tmapa *m) {
   scanf("%d", &(m->nlinhas));
   scanf("%d", &(m->ncolunas));
   scanf("%d", &(m->ncores));
+  m->cmax = m->ncolunas - 1;
+  m->lmax = m->nlinhas -1;
   m->mapa = aloca_matriz_int(m->nlinhas, m->ncolunas);
   for(i = 0; i < m->nlinhas; i++) {
     for(j = 0; j < m->ncolunas; j++)

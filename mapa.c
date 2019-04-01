@@ -193,17 +193,22 @@ void pinta_mapa(tmapa *m, int cor) {
   pinta(m, m->lref, m->cref, fundo, cor);
 }
 // int conta(tmapa *m, int i, int j, int cor, int dir)
-int ponto_inicial (int lref, int cref, tmapa* m) {
-  int k = 0, conta, cor;
+int ponto_inicial (tmapa* m) {
+  int k = 0, conta, cor, lref, cref;
   int **mat = m->mapa;
   // printf("lmax: %d cmax: %d\n", m->lmax, m->cmax);
   for(int i = 0; i <= m->lmax; i++) {
     // printf("i: %d\n", i);
     for(int j = 0; j <= m->cmax; j++) {
       // printf("  j: %d ", j);
-      cor = mat[i][j];
+      m->lref = i; m->cref = j;
+      cor = mat[i][j]; 
+      // printf("cor %d\n", cor);
       conta = conta_flood(m, i, j, cor, 0);
+      // printf("lref %d cref%d\n", m->lref, m->cref);
+      // mostra_mapa_cor(m);
       pinta_mapa(m, cor);
+      // mostra_mapa_cor(m); 
       if (conta > k) {
         k = conta;
         lref = i;
@@ -211,7 +216,9 @@ int ponto_inicial (int lref, int cref, tmapa* m) {
       }
     }
   }
-  printf("lref: %d, cref: %d\n", lref, cref );
-  printf("k: %d\n ", k);
+  // printf("lref: %d, cref: %d\n", lref, cref );
+  // printf("k: %d\n", k);
+  m->lref = lref;
+  m->cref = cref;
   return k;
 }

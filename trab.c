@@ -26,10 +26,13 @@ int main(int argc, char **argv) {
   int* arr = malloc((final/4) * sizeof(int));
   arr[0] = 0;
   
-  m.lref = 0;
-  m.cref = 0;
+  // m.lref = 0;
+  // m.cref = 0;
+  
   // mostra_mapa_cor(&m);
-  // ponto_inicial(m.lref, m.cref, &m);
+  ponto_inicial(&m);
+  // printint("lref", m.lref);
+  // printint("cref", m.cref);
   // exit(0);
   
   //Inicia Estado Inicial (Vertice 0)

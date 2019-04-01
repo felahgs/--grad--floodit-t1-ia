@@ -26,8 +26,8 @@ no checa_escore(no na, no nb) {
     return nb;
 }
 
-void imprime_array(int *arr) {
-  printf("n m %d\n", arr[0]);
+void imprime_array(int *arr, tmapa *m) {
+  printf("%d %d %d\n",m->lref, m->cref, arr[0]);
   for (int i = 1; i <= arr[0]; i++) {
     printf("%d ", arr[i]);
   }

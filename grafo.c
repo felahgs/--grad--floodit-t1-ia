@@ -27,10 +27,6 @@ vertice constroi_vertice (int id, vertice pai, tmapa m) {
 	if ( !v )
 		return NULL;
 
-	//guarda o nome do vértice
-// 	v->nome = malloc(sizeof(char)*(strlen(nome_v)+1));
-// 	strcpy(v->nome,nome_v);
-
   v->id = id;
 	v->pai = pai;
 	v->filhos  = constroi_lista();
@@ -38,12 +34,6 @@ vertice constroi_vertice (int id, vertice pai, tmapa m) {
 	v->cor = cor;
 	v->escore = conta_flood(&m, m.lref, m.cref, cor, 0);
 	pinta_mapa(&m, v->cor);
-
-    // int f = conta_flood(&m, i, j, cor, 0 );
-// 	v->escore = f;
-// 	pinta_mapa(&m, cor);
-// 	printf("Vertice %d flood:%d\n", id, f);
-	
 
 	return v;
 }
@@ -69,12 +59,8 @@ no expande_vertices(grafo g, no pai, int cores, lista fronteira) {
     pinta_mapa(&m, i);
     novo_vertice(g, v, &m, fronteira);
     
-    // vertice vf = conteudo(n);
-    // mostra_mapa_cor(&vf->estado);
-    // printf("Flood: %d\n\n", vf->escore);
   }
   remove_no(fronteira, pai, NULL);
-  // imprime_lista(fronteira);
   return primeiro_no(fronteira);
 }
 

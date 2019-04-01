@@ -23,6 +23,6 @@ int conta_flood(tmapa *m, int i, int j, int cor, int dir);
 int conta(tmapa *m, int i, int j, int cor, int dir);
 void pinta(tmapa *m, int l, int c, int fundo, int cor);
 void pinta_mapa(tmapa*, int);
-
+int ponto_inicial (int lref, int cref, tmapa* m);
 
 #endif

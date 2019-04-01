@@ -8,6 +8,7 @@
 #include "mapa.h"
 #include "aux.h"
 
+//cat exemplo plano | ./verifica ; echo $?
 int main(int argc, char **argv) {
 
   int cores, final;
@@ -17,15 +18,6 @@ int main(int argc, char **argv) {
   vertice v;
   no no, n;
 
-
-  // if(argc < 4 || argc > 5) {
-  //   printf("uso: %s <numero_de_linhas> <numero_de_colunas> <numero_de_cores> [<semente_aleatoria>]\n", argv[0]);
-  //   exit(1);
-  // }
-
-  // m.nlinhas = atoi(argv[1]);
-  // m.ncolunas = atoi(argv[2]);
-  // m.ncores = atoi(argv[3]);
   carrega_mapa(&m);
   
   final = m.nlinhas * m.ncolunas;
@@ -34,33 +26,30 @@ int main(int argc, char **argv) {
   int* arr = malloc((final/4) * sizeof(int));
   arr[0] = 0;
   
-  // printint("Cores", cores);
-  // printint("Estado final", final);
-
-  // gera_mapa(&m, semente);
-  
   m.lref = 0;
   m.cref = 0;
+  // mostra_mapa_cor(&m);
+  // ponto_inicial(m.lref, m.cref, &m);
+  // exit(0);
   
   //Inicia Estado Inicial (Vertice 0)
   no = novo_vertice(g, NULL, &m, fronteira);
   v = conteudo(no);
-  imprime_vertice(v);
+  // imprime_vertice(v);
   
   // printf("\n\n");
   while (!vazia(fronteira)) {
     no = expande_vertices(g, no, cores, fronteira);
     for(n = primeiro_no(fronteira); n; n = proximo_no(n)) {
       no = checa_escore(no, n);
-      // imprime_vertice(conteudo(no));
     }
     v = conteudo(no);
-    imprime_vertice(v);
+    // imprime_vertice(v);
     arr[0]++;
     arr[arr[0]] = v->cor;
     if(v->escore == final) break;
   }
-  printint("Score", v->escore); printf("\n");
+  // printint("Score", v->escore); printf("\n");
 
-  imprime_array(arr);
+  imprime_array(arr, &m);
 }

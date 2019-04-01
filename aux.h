@@ -8,6 +8,6 @@
 void printint (char* s, int i);
 void imprime_vertice(vertice v);
 no checa_escore(no na, no nb);
-void imprime_array(int *arr);
+void imprime_array(int *arr, tmapa *m);
 
 #endif

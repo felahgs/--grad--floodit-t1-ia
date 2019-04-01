@@ -134,27 +134,20 @@ void mostra_mapa_cor(tmapa *m) {
 
 int conta_flood(tmapa *m, int i, int j, int cor, int dir) {
   int res = conta(m, i, j, cor, dir);
-  // pinta_mapa(m, cor);
+  // mostra_mapa_cor(m);
+  // int res = 1;
   return res;
 }
 
 int conta(tmapa *m, int i, int j, int cor, int dir) {
   int **mat = m->mapa;
   int count = 0;
-  
-  // mostra_mapa_cor(m);
-  
+  // mostra_mapa_cor(m); 
   if (i > m->lmax) i = 0;
   else if (i < 0) i = m->lmax;
   
   if (j > m->cmax) j = 0;
   else if (j < 0 ) j = m->cmax;
-  
-  // printf("Flood cor: %d\n", cor);
-  // printf("cordinates:%d %d\n", i, j);
-  // printf("node cor: %d\n", mat[i][j]);
-  // printf("lmax: %d cmax: %d\n", m->lmax, m->cmax );
-  
   if(mat[i][j] != cor) return count;
   count++;
   // mat[i][j] = mat[i][j] * -1;
@@ -198,4 +191,27 @@ void pinta_mapa(tmapa *m, int cor) {
   if(cor == fundo)
     return;
   pinta(m, m->lref, m->cref, fundo, cor);
+}
+// int conta(tmapa *m, int i, int j, int cor, int dir)
+int ponto_inicial (int lref, int cref, tmapa* m) {
+  int k = 0, conta, cor;
+  int **mat = m->mapa;
+  // printf("lmax: %d cmax: %d\n", m->lmax, m->cmax);
+  for(int i = 0; i <= m->lmax; i++) {
+    // printf("i: %d\n", i);
+    for(int j = 0; j <= m->cmax; j++) {
+      // printf("  j: %d ", j);
+      cor = mat[i][j];
+      conta = conta_flood(m, i, j, cor, 0);
+      pinta_mapa(m, cor);
+      if (conta > k) {
+        k = conta;
+        lref = i;
+        cref = j;
+      }
+    }
+  }
+  printf("lref: %d, cref: %d\n", lref, cref );
+  printf("k: %d\n ", k);
+  return k;
 }

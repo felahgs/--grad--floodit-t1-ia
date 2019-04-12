@@ -17,6 +17,7 @@ struct vertice {
   int profundidade;
   vertice pai;
   lista filhos; // lista de vizinhos de saida 
+  int rota[5000];
 };
 
 struct grafo {

@@ -8,6 +8,8 @@
 void printint (char* s, int i);
 void imprime_vertice(vertice v);
 no checa_escore(no na, no nb);
-void imprime_array(int *arr, tmapa *m);
+void imprime_resultado(int *arr, tmapa *m);
+void copia_array(int *org, int *dest);
+void imprime_array(int *arr);
 
 #endif

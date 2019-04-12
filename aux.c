@@ -26,8 +26,21 @@ no checa_escore(no na, no nb) {
     return nb;
 }
 
-void imprime_array(int *arr, tmapa *m) {
+void imprime_resultado(int *arr, tmapa *m) {
   printf("%d %d %d\n",m->lref, m->cref, arr[0]);
+  for (int i = 1; i <= arr[0]; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+}
+
+void copia_array(int *org, int *dest) {
+  for (int i = 0; i <= org[0]; i++) {
+    dest[i] = org[i];
+  }
+}
+
+void imprime_array(int *arr){
   for (int i = 1; i <= arr[0]; i++) {
     printf("%d ", arr[i]);
   }

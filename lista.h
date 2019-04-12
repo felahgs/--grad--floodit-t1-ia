@@ -11,6 +11,24 @@ typedef struct lista *lista;
 
 typedef struct no *no;
 
+//---------------------------------------------------------------------------
+// nó de lista encadeada cujo conteúdo é um void *
+
+struct no {
+
+  void *conteudo;
+  no proximo;
+};
+//---------------------------------------------------------------------------
+// lista encadeada
+
+struct lista {
+  
+  unsigned int tamanho;
+  int padding; // só pra evitar warning 
+  no primeiro;
+  no ultimo;
+};
 //------------------------------------------------------------------------------
 // devolve o número de nós da lista l
 
@@ -25,6 +43,10 @@ unsigned int vazia(lista l);
 //      ou NULL, se l é vazia
 
 no primeiro_no(lista l);
+
+// devolve o ultimo nó da lista l,
+//      ou NULL, se l é vazia
+no ultimo_no(lista l);
 
 //------------------------------------------------------------------------------
 // devolve o sucessor do nó n,

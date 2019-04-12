@@ -12,7 +12,7 @@ $(FLOODIT): $(OBJFLODIT)
 	$(CC) $(CFLAGS) -o $(FLOODIT) $(OBJFLODIT) $(LDFLAGS)
 
 $(TRAB): $(OBJTRAB)
-	$(CC) $(CFLAGS) -o $(TRAB) $(OBJTRAB) $(LDFLAGS)
+	$(CC) $(CFLAGS) -g -o $(TRAB) $(OBJTRAB) $(LDFLAGS)
 	
 clean:
 	rm -f $(OBJFLODIT) $(OBJTRAB) $(FLOODIT) $(TRAB) *~

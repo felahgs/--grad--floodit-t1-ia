@@ -1,23 +1,7 @@
 #include <malloc.h>
 #include "lista.h"
 
-//---------------------------------------------------------------------------
-// nó de lista encadeada cujo conteúdo é um void *
 
-struct no {
-
-  void *conteudo;
-  no proximo;
-};
-//---------------------------------------------------------------------------
-// lista encadeada
-
-struct lista {
-  
-  unsigned int tamanho;
-  int padding; // só pra evitar warning 
-  no primeiro;
-};
 //---------------------------------------------------------------------------
 // devolve o número de nós da lista l
 
@@ -40,6 +24,21 @@ unsigned int vazia(lista l) {
 no primeiro_no(lista l) { return l->primeiro; }
 
 //---------------------------------------------------------------------------
+// devolve o ultimo nó,
+//      ou NULL, se a lista estiver vazia
+no ultimo_no(lista l) {
+  no n;
+  if(primeiro_no(l) == NULL)
+    return NULL;
+  for (n = primeiro_no(l); n->proximo; n = proximo_no(n)) {
+    if (proximo_no(n) == NULL) {
+      return n;
+    }
+  }
+  return NULL;
+}
+  
+//---------------------------------------------------------------------------
 // devolve o conteúdo do nó n
 //      ou NULL se n = NULL 
 
@@ -49,6 +48,7 @@ void *conteudo(no n) { return n->conteudo; }
 // devolve o sucessor do nó n,
 //      ou NULL, se n for o último nó da lista
 
+//---------------------------------------------------------------------------
 no proximo_no(no n) { return n->proximo; }
 
 //---------------------------------------------------------------------------
@@ -118,6 +118,7 @@ no insere_lista(void *conteudo, lista l) {
   
   return l->primeiro = novo;
 }
+
 
 //------------------------------------------------------------------------------
 // remove o no de endereço rno de l

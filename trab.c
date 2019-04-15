@@ -9,6 +9,8 @@
 #include "aux.h"
 
 //cat exemplo plano | ./verifica ; echo $?
+//cat exemplo2 plano2 | ./verifica ; echo $?
+//cat exemplo3 plano3 | ./verifica ; echo $?
 int main(int argc, char **argv) {
 
   int cores, final;
@@ -27,6 +29,8 @@ int main(int argc, char **argv) {
   arr[0] = 0;
   
   
+  m.lref = 0;
+  m.cref = 0;
   ponto_inicial(&m);
   
   //Inicia Estado Inicial (Vertice 0)
@@ -44,9 +48,16 @@ int main(int argc, char **argv) {
       for(n = primeiro_no(fronteira); n; n = proximo_no(n)) {
         v = conteudo(n); 
         if(v->escore > flood_max->escore) {
-            flood_max = v;
+          flood_max = v;
+          expande_vertices(g, n, cores, fronteira);
         }
-        expande_vertices(g, n, cores, fronteira);
+        else {
+          expande_vertices(g, n, cores, fronteira);
+          // free(v->estado.mapa);
+          // free((*v).rota);
+          // free(v);
+          // imprime_vertice(v);
+        }
         // printint("\niteration", it); it++;
         // printint("Fronteira", tamanho_lista(fronteira)); imprime_lista(fronteira);
         // printint("Grafo", tamanho_lista(g->vertices)); imprime_lista(g->vertices);
@@ -56,8 +67,12 @@ int main(int argc, char **argv) {
         v = conteudo(n);
         if(v->escore > flood_max->escore) {
           flood_max = v;
+          remove_no(fronteira, n, NULL);
         }
-        remove_no(fronteira, n, NULL);
+        else {
+          free(v->estado.mapa);
+          remove_no(fronteira, n, NULL);
+        }
         // printint("\niteration", it); it++;
         // printint("Fronteira", tamanho_lista(fronteira)); imprime_lista(fronteira);
         // printint("Grafo", tamanho_lista(g->vertices)); imprime_lista(g->vertices);

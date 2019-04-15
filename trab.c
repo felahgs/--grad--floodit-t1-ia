@@ -8,9 +8,6 @@
 #include "mapa.h"
 #include "aux.h"
 
-//cat exemplo plano | ./verifica ; echo $?
-//cat exemplo2 plano2 | ./verifica ; echo $?
-//cat exemplo3 plano3 | ./verifica ; echo $?
 int main(int argc, char **argv) {
 
   int cores, final;
@@ -39,11 +36,6 @@ int main(int argc, char **argv) {
   v = conteudo(no);
   
   while (flood_max->escore != final ) {
-  // imprime_lista(fronteira);
-  // int it = 0;
-  // printint("\niteration", it); it++;
-  // printint("Fronteira", tamanho_lista(fronteira)); imprime_lista(fronteira);
-  // printint("Grafo", tamanho_lista(g->vertices)); imprime_lista(g->vertices);
     for (int c = 0; c < 3; c++){ 
       for(n = primeiro_no(fronteira); n; n = proximo_no(n)) {
         v = conteudo(n); 
@@ -53,14 +45,7 @@ int main(int argc, char **argv) {
         }
         else {
           expande_vertices(g, n, cores, fronteira);
-          // free(v->estado.mapa);
-          // free((*v).rota);
-          // free(v);
-          // imprime_vertice(v);
         }
-        // printint("\niteration", it); it++;
-        // printint("Fronteira", tamanho_lista(fronteira)); imprime_lista(fronteira);
-        // printint("Grafo", tamanho_lista(g->vertices)); imprime_lista(g->vertices);
       }
     }
     for(n = primeiro_no(fronteira); n; n = proximo_no(n)) {
@@ -73,29 +58,8 @@ int main(int argc, char **argv) {
           free(v->estado.mapa);
           remove_no(fronteira, n, NULL);
         }
-        // printint("\niteration", it); it++;
-        // printint("Fronteira", tamanho_lista(fronteira)); imprime_lista(fronteira);
-        // printint("Grafo", tamanho_lista(g->vertices)); imprime_lista(g->vertices);
-        // imprime_vertice(flood_max); exit(0);
     }
     insere_lista(flood_max, fronteira);
-    // imprime_lista(fronteira);
-    // imprime_vertice(flood_max); exit(0);
   }
-  // imprime_vertice(flood_max);
   imprime_resultado(flood_max->rota, &m);
-  // imprime_vertice(v);
-  
-  // while (!vazia(fronteira)) {
-  //   no = expande_vertices(g, no, cores, fronteira);
-  //   for(n = primeiro_no(fronteira); n; n = proximo_no(n)) {
-  //     no = checa_escore(no, n);
-  //   }
-  //   v = conteudo(no);
-  //   arr[0]++;
-  //   arr[arr[0]] = v->cor;
-  //   if(v->escore == final) break;
-  // }
-
-  // imprime_resultado(arr, &m);
 }

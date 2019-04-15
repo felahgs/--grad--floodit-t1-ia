@@ -1,0 +1,41 @@
+Trabalho de IA Floodit
+
+===========
+--Versões--
+===========
+O diretório ver1 contém a primeira versão do programa em que é realizada uma simples busca gulosa
+procurando sempre a cor que resultará em um tabuleiro com mais espaços pintados adjacentes ao
+ponto inicial. A versão atual encontra um resultado melhor porém com execução mais demorada e tem seu 
+funcionamento descrito abaixo.
+
+===============
+---Descrição---
+===============
+Implementação do algoritmo de busca para encontrar solução do jogo 'floodit'.
+
+O algoritmo consiste em construir um grafo onde cada nodo será expandido gerando filhos que
+retistram o resultado do tabuleiro após ser aplicada cada uma das cores disponíveis. 
+
+Inicialmente é realizanda uma busca em largura até profundidade 3 a partir do nodo raíz com estado inicial,
+sempre expandindo os nodos e conferindo se qualquer um deles apresenta o resultado para o problema. Caso
+a solução não seja encontrada, é realizado um passo guloso para todos os nodos na fronteira, que são
+todos os nodos com profundidade 3 a partir do nodo raiz. Assim o nodo com melhor 
+valor de flood (o estado onde a partir do ponto inicial existe maior quantidade de nodos 
+adjacentes com a mesma cor) é expandido a partir do mesmo é realizada uma nova busca em largura 
+até as 3 proximas profundidades. 
+O processo é repetido até que o resultado seja encontrado.
+
+================
+---Instalação---
+================
+"make" "make trab" para compilar a versão do trabalho para execução
+"make clean" para remover todos os arquivos binários
+
+---Execução---
+./trab < "mapa_exemplo" 
+
+Onde mapa exemplo é um arquivo em que na primeira linha possuí três inteiros 
+definindo o número de linhas, colunas e cores do tabuleiro. A segunda linha em
+diante contém os elementos da matriz.
+
+
